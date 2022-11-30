@@ -2,7 +2,7 @@ import hikari
 import lightbulb
 
 bot = lightbulb.BotApp(
-    token='MTA0NzAwMTM2NzcyNzgzNzIxNA.GzlOiT.J7kinC5M1JQ1weuMYOflaJrXAmfqbfOPP2mGVo',
+    token=,
     default_enabled_guilds=(1047002328684838982)
 )
 
