@@ -18,9 +18,16 @@ bot = lightbulb.BotApp(
 @lightbulb.implements(lightbulb.SlashCommand)
 async def ping(context):
     prev = context.member.nickname
-    result = int(prev) + context.options.num
-    await context.member.edit(nickname = result)
-    await context.respond(f'changed nickname to  {str(result)}')
+    print(context.member)
+    if '[' in prev and ']' in prev:
+        prev_name = prev.split('[')[0][0:-1]
+        prev_num = int(prev.split('[')[1][0:-1])
+    else:
+        prev_name = prev
+        prev_num = 0
+    result = int(prev_num) + context.options.num
+    await context.member.edit(nickname = f"{prev_name} [{result}]")
+    await context.respond(f'changed nickname to {prev_name} [{result}]')
 
 @bot.command
 @lightbulb.option('num', 'how many to remove', type=int)
@@ -28,8 +35,14 @@ async def ping(context):
 @lightbulb.implements(lightbulb.SlashCommand)
 async def ping(context):
     prev = context.member.nickname
-    result = int(prev) - context.options.num
-    await context.member.edit(nickname = result)
-    await context.respond(f'changed nickname to  {str(result)}')
+    if '[' in prev and ']' in prev:
+        prev_name = prev.split('[')[0][0:-1]
+        prev_num = int(prev.split('[')[1][0:-1])
+    else:
+        prev_name = prev
+        prev_num = 0
+    result = int(prev_num) - context.options.num
+    await context.member.edit(nickname = f"{prev_name} [{result}]")
+    await context.respond(f'changed nickname to {prev_name} [{result}]')
 
 bot.run()
