@@ -16,7 +16,7 @@ bot = lightbulb.BotApp(
 @lightbulb.option('num', 'how many to add', type=int)
 @lightbulb.command('add', 'add punishment number')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def ping(context):
+async def add(context):
     prev = context.member.nickname
     print(context.member)
     if '[' in prev and ']' in prev:
@@ -27,13 +27,13 @@ async def ping(context):
         prev_num = 0
     result = int(prev_num) + context.options.num
     await context.member.edit(nickname = f"{prev_name} [{result}]")
-    await context.respond(f'Added {context.options.num} to the counter.')
+    await context.respond(f'{context.user.mention} added {context.options.num} to the counter.')
 
 @bot.command
 @lightbulb.option('num', 'how many to remove', type=int)
 @lightbulb.command('remove', 'remove punishment number')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def ping(context):
+async def remove(context):
     prev = context.member.nickname
     if '[' in prev and ']' in prev:
         prev_name = prev.split('[')[0][0:-1]
@@ -43,6 +43,12 @@ async def ping(context):
         prev_num = 0
     result = int(prev_num) - context.options.num
     await context.member.edit(nickname = f"{prev_name} [{result}]")
-    await context.respond(f'Removed {context.options.num} to the counter.')
+    await context.respond(f'{context.user.mention} removed {context.options.num} from the counter.')
+
+@bot.command
+@lightbulb.command("league", "depression time")
+@lightbulb.implements(lightbulb.SlashCommand)
+async def league(context):
+    await context.respond(context.user.mention)
 
 bot.run()
