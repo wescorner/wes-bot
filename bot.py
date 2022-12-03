@@ -27,7 +27,7 @@ async def ping(context):
         prev_num = 0
     result = int(prev_num) + context.options.num
     await context.member.edit(nickname = f"{prev_name} [{result}]")
-    await context.respond(f'changed nickname to {prev_name} [{result}]')
+    await context.respond(f'Added {context.options.num} to the counter.')
 
 @bot.command
 @lightbulb.option('num', 'how many to remove', type=int)
@@ -43,6 +43,6 @@ async def ping(context):
         prev_num = 0
     result = int(prev_num) - context.options.num
     await context.member.edit(nickname = f"{prev_name} [{result}]")
-    await context.respond(f'changed nickname to {prev_name} [{result}]')
+    await context.respond(f'Removed {context.options.num} to the counter.')
 
 bot.run()
