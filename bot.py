@@ -9,7 +9,7 @@ load_dotenv(dotenv_path)
 
 bot = lightbulb.BotApp(
     token=os.environ.get("API_TOKEN"),
-    default_enabled_guilds=(1047002328684838982)
+    default_enabled_guilds=(1047002328684838982, 984973732470751273)
 )
 
 @bot.command
